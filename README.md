@@ -44,7 +44,7 @@ spring:
         login-password: admin@123
 ```
 
-2. 根据需求修改配置类`DBS`以及配置`DataSourceAspect`和`MybatisPlusConfig`类
+2. 根据需求修改配置类`DbGlobal`以及配置`DataSourceAspect`和`MybatisPlusConfig`类
 
 ### 自动生成代码
 1.自动生成代码需要依赖
