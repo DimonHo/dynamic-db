@@ -16,16 +16,29 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <java.version>1.8</java.version>
         <mybatis-plus.version>3.2.0</mybatis-plus.version>
         <druid.version>1.1.21</druid.version>
         <p6spy.version>3.8.6</p6spy.version>
+        <freemarker.version>2.3.29</freemarker.version>
+        <hutool.version>5.0.7</hutool.version>
     </properties>
 
     <dependencies>
         <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -43,9 +56,14 @@
             <version>${mybatis-plus.version}</version>
         </dependency>
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>${freemarker.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

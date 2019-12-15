@@ -2,11 +2,13 @@ package com.example.dynamicdb.config;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import com.baomidou.mybatisplus.core.MybatisConfiguration;
+import com.baomidou.mybatisplus.core.config.GlobalConfig;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.type.JdbcType;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -27,6 +29,9 @@ import java.util.Map;
 @Configuration
 @MapperScan("com.example.dynamicdb.*.mapper") // 扫描mapperdao的地址
 public class MybatisPlusConfig {
+
+    @Autowired
+    CustomMetaObjectHandler customMetaObjectHandler;
 
     @Bean
     public PaginationInterceptor paginationInterceptor() {
@@ -55,6 +60,8 @@ public class MybatisPlusConfig {
     public DataSource multipleDataSource(@Qualifier(DbGlobal.DB1) DataSource source,
                                          @Qualifier(DbGlobal.DB2) DataSource target) {
         DynamicDataSource dynamicDataSource = new DynamicDataSource();
+        DataSourceContextHolder.DATA_SOURCE_MAP.put(DbGlobal.DB1, source);
+        DataSourceContextHolder.DATA_SOURCE_MAP.put(DbGlobal.DB2, target);
         Map<Object, Object> targetDataSources = new HashMap<>();
         targetDataSources.put(DbGlobal.DB1, source);
         targetDataSources.put(DbGlobal.DB2, target);
@@ -78,6 +85,9 @@ public class MybatisPlusConfig {
         //PerformanceInterceptor(),OptimisticLockerInterceptor()
         // 分页插件
         sqlSessionFactory.setPlugins(paginationInterceptor());
+        GlobalConfig globalConfig = new GlobalConfig();
+        globalConfig.setMetaObjectHandler(customMetaObjectHandler);
+        sqlSessionFactory.setGlobalConfig(globalConfig);
         return sqlSessionFactory.getObject();
     }
 }

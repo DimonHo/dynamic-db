@@ -34,6 +34,7 @@ spring:
         url-pattern: "/druid/*"   #浏览器访问localhost:8080/druid，进入监控界面
         login-username: admin
         login-password: admin@123
-
+mybatis-plus:
+  auto-generator: true
 
 
