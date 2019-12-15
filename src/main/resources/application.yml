@@ -1,0 +1,39 @@
+server:
+  port: 8080
+spring:
+  aop:
+    proxy-target-class: true
+    auto: true
+  datasource:
+    db1:
+      driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+      url: jdbc:p6spy:mysql://${dbUrl:mysql-dev.database:3306}/${dbName:dynamic-source}?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      username: ${dbUser:root}
+      password: ${dbPass:wdkj@123#}
+      db-type: mysql
+      validation-query: "select 1"
+      max-active: 16
+      min-idle: 4
+    db2:
+      driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+      url: jdbc:p6spy:mysql://${dbUrl:mysql-dev.database:3306}/${dbName:dynamic-target}?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      username: ${dbUser:root}
+      password: ${dbPass:wdkj@123#}
+      db-type: mysql
+      validation-query: "select 1"
+    druid:
+      filter:
+        stat:
+          enabled: true  #是否激活sql监控
+        wall:
+          enabled: true  #是否激活sql防火墙
+      web-stat-filter:
+        enabled: true
+      stat-view-servlet:
+        enabled: true
+        url-pattern: "/druid/*"   #浏览器访问localhost:8080/druid，进入监控界面
+        login-username: admin
+        login-password: admin@123
+
+
+
