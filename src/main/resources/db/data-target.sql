@@ -1,0 +1,1 @@
+INSERT INTO `dynamic-target`.person (name, age, email, operator) VALUES ('Jone', 18, 'test1@baomidou.com', 'test'),('Tome', 19, 'test2@baomidou.com', 'test');

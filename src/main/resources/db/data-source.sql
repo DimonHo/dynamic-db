@@ -1,0 +1,1 @@
+INSERT INTO `dynamic-source`.user (name, age, email, operator) VALUES ('张学友', 18, 'test1@baomidou.com', 'test'),('刘德华', 19, 'test2@baomidou.com', 'test');

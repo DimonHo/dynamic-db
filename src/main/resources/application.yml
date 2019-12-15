@@ -5,6 +5,9 @@ spring:
     proxy-target-class: true
     auto: true
   datasource:
+    initialization-mode: NEVER #自动执行sql脚本初始化数据库，可选值:ALWAYS|EMBEDDED|NEVER
+    schema: classpath:db/schema-source.sql,classpath:db/schema-target.sql
+    data: classpath:db/data-source.sql,classpath:db/data-target.sql
     db1:
       driver-class-name: com.p6spy.engine.spy.P6SpyDriver
       url: jdbc:p6spy:mysql://${dbUrl:mysql-dev.database:3306}/${dbName:dynamic-source}?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
