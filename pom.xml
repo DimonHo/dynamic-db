@@ -21,7 +21,7 @@
         <druid.version>1.1.21</druid.version>
         <p6spy.version>3.8.6</p6spy.version>
         <freemarker.version>2.3.29</freemarker.version>
-        <hutool.version>5.0.7</hutool.version>
+        <hutool.version>5.8.21</hutool.version>
     </properties>
 
     <dependencies>
